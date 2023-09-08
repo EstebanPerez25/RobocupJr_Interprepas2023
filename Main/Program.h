@@ -10,9 +10,7 @@
 #define sm_BL 3
 #define sm_FR 4
 #define sm_BR 5
-// Limit switches
-# define lm_L 6  
-# define lm_R 7
+
 
 // mesures of the ultrasonics .
 #define dwall 11
@@ -35,7 +33,7 @@ class Program {    // se crea clase Program
 
     // NAVIGATION
     void algoritm();
-    
+
 };
 
 // CONSTRUCTOR
@@ -49,31 +47,13 @@ void Program::algoritm() {
 
 
 
-// parte de la navegacion del algoritmo 
-Sensors.scan();
+  // parte de la navegacion del algoritmo
+  byte action = Sensors.action();
+  Maze.moves(action);
 
 
- if (Sensors.mesures[4] < 11 && Sensors.mesures[0] < 9 ){
-  Serial.println("derecha");
-  Maze.turnRight();
-}
- else if (Sensors.mesures[6] <= 14 && Sensors.mesures[0] < 10){
-   Serial.println("izquierda");
-   Maze.turnLeft();
- }
-else if (digitalRead(lm_L) == HIGH){
-  Maze.lilLeft();
-}
-else if (digitalRead(lm_R) == HIGH){
-   Maze.lilRight();
-}
 
 
-// Test
-else if (Sensors.mesures[4] < 11 || Sensors.mesures[4] > 11 && Sensors.mesures[0] > 9){ 
-   Serial.println("enfrente");
-Maze.forward();
-}
 }
 
 // ********************* //

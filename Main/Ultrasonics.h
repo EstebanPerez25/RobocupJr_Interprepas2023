@@ -28,6 +28,10 @@
 
 #define MAX_DISTANCE 200        // variable de distancia maxima 
 
+// Limit switches
+# define lm_L 6
+# define lm_R 7
+
 #define dwall 11
 #define df 7
 
@@ -45,16 +49,19 @@ NewPing sonar[8] = {
 // se crea la clase Ultrasonics
 
 class Ultrasonics {
-    //private:
+  private:
 
 
   public:
+
     float mesures[8];          // variable de mediciones en este caso de 8 sensores
+
 
     Ultrasonics();             // declaracion de constructor
 
     // METHODS
-    byte scan();
+    void scan();      // Read all sensors
+    byte action();    // Return the best action suggested by the ultrasonics lectures
 
 
 };
@@ -65,8 +72,8 @@ Ultrasonics::Ultrasonics() {          // definicion de constructor
 
 
 // METHODS
-byte Ultrasonics::scan() {                    // metodo para escaneo de las mediciones de los sensores ultrasonicos
-  byte n = 0;
+void Ultrasonics::scan() {                    // metodo para escaneo de las mediciones de los sensores ultrasonicos
+
   for (byte i = 0; i < 8; i ++) {
     /*
        0: FC
@@ -80,5 +87,33 @@ byte Ultrasonics::scan() {                    // metodo para escaneo de las medi
     */
     mesures[i] = sonar[i].ping_cm();
     delay(7);
+  }
+}
+
+byte action() {
+  // Scan
+  Ultrasonics ul = Ultrasonics();
+  ul.scan();
+
+  // Take a decision: {0: Fwd, 1: Left; 2: Right}
+  if (ul.mesures[4] < 11 && ul.mesures[0] < 9 ) {
+    //Serial.println("Right");
+    return 2;
+  }
+  else if (ul.mesures[6] <= 14 && ul.mesures[0] < 10) {
+    //Serial.println("Left");
+    return 1;
+  }
+
+  else if (digitalRead(lm_L) == HIGH) {
+    //Serial.println("Little left");
+    return 3;
+  }
+  else if (digitalRead(lm_R) == HIGH) {
+    Maze.lilRight();
+  }
+  else if (ul.mesures[4] < 11 || ul.mesures[4] > 11 && ul.mesures[0] > 9) {
+    Serial.println("enfrente");
+    return 0;
   }
 }
