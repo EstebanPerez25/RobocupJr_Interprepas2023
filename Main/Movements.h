@@ -10,9 +10,8 @@
 #define lr_size (950/4)     // Little turn left size
 
 
+
 // OBJECTS
-
-
 class Movements {      // se crea la clase Movements.h
 
   private:
@@ -39,7 +38,7 @@ class Movements {      // se crea la clase Movements.h
     void turnRight();
     void lilRight();
     void stp();
-
+    void limitS();
 
 };
 
@@ -183,3 +182,5 @@ void Movements::lilRight() {                       // metodo para pequeños paso
   delay(d);
 
 }
+
+  
