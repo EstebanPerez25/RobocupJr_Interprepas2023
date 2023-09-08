@@ -10,6 +10,9 @@
 #define sm_BL 3
 #define sm_FR 4
 #define sm_BR 5
+// Limit switches
+# define lm_L 6  
+# define lm_R 7
 
 // mesures of the ultrasonics .
 #define dwall 11
@@ -25,8 +28,6 @@ ColorSens colSen;                              // objeto de clase ColorSens.h
 
 
 class Program {    // se crea clase Program
-
-  private:
 
   public:
     Program();     // declaracion de constructor
@@ -56,24 +57,23 @@ Sensors.scan();
   Serial.println("derecha");
   Maze.turnRight();
 }
- else if (Sensors.mesures[6] < 11 && Sensors.mesures[0] < 9){
+ else if (Sensors.mesures[6] <= 14 && Sensors.mesures[0] < 10){
    Serial.println("izquierda");
    Maze.turnLeft();
  }
-// else if (Sensors.mesures[2] <= 2){
-//   Serial.println("pequeña izquierda ");
-//   Maze.lilLeft();
-// }
-// else if (Sensors.mesures[1] < 4){
-//   Serial.println("pequeña derecha");
-//   Maze.lilLeft();
-// }
+else if (digitalRead(lm_L) == HIGH){
+  Maze.lilLeft();
+}
+else if (digitalRead(lm_R) == HIGH){
+   Maze.lilRight();
+}
+
+
+// Test
 else if (Sensors.mesures[4] < 11 || Sensors.mesures[4] > 11 && Sensors.mesures[0] > 9){ 
    Serial.println("enfrente");
 Maze.forward();
 }
-
-
 }
 
 // ********************* //
