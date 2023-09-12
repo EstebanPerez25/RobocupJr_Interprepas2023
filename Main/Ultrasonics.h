@@ -28,8 +28,12 @@
 
 #define MAX_DISTANCE 200        // variable de distancia maxima 
 
-#define dwall 11
-#define df 7
+// Limit switches
+# define lm_L 6
+# define lm_R 7
+
+#define dwall 11  // distance to lateral walls 
+#define df 7      // distance to frontal wall 
 
 NewPing sonar[8] = {
   NewPing (TRIGGER_PIN1, ECHO_PIN1, MAX_DISTANCE),
@@ -45,16 +49,19 @@ NewPing sonar[8] = {
 // se crea la clase Ultrasonics
 
 class Ultrasonics {
-    //private:
+  private:
 
 
   public:
+
     float mesures[8];          // variable de mediciones en este caso de 8 sensores
+
 
     Ultrasonics();             // declaracion de constructor
 
     // METHODS
-    byte scan();
+    void scan();      // Read all sensors
+    byte action();    // Return the best action suggested by the ultrasonics lectures
 
 
 };
@@ -65,8 +72,8 @@ Ultrasonics::Ultrasonics() {          // definicion de constructor
 
 
 // METHODS
-byte Ultrasonics::scan() {                    // metodo para escaneo de las mediciones de los sensores ultrasonicos
-  byte n = 0;
+void Ultrasonics::scan() {                    // metodo para escaneo de las mediciones de los sensores ultrasonicos
+
   for (byte i = 0; i < 8; i ++) {
     /*
        0: FC
@@ -81,4 +88,35 @@ byte Ultrasonics::scan() {                    // metodo para escaneo de las medi
     mesures[i] = sonar[i].ping_cm();
     delay(7);
   }
+}
+
+byte Ultrasonics::action() {
+  // Scan
+ 
+  this->scan();
+   Serial.println(this->mesures[0]);
+
+  // Take a decision: {0: Right, 1: Left; 2: Little left; 3: Little right; 4:Fwd}
+  if (this->mesures[4] < dwall && this->mesures[0] < df ) {
+   // Serial.println("Right");
+    return 0;
+  }
+  else if (this->mesures[4] > dwall && this->mesures[0] < df) {
+  //  Serial.println("Left");
+    return 1;
+  }
+
+  else if (digitalRead(lm_L) == HIGH) {
+   // Serial.println("Little left");
+    return 2;
+  }
+  else if (digitalRead(lm_R) == HIGH) {
+   // Serial.println("Little right");
+    return 3;
+  }
+  else if (this->mesures[0] > df) {
+   // Serial.println("enfrente");
+    return 4;
+  }
+
 }
