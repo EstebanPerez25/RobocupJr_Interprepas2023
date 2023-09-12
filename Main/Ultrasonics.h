@@ -32,8 +32,8 @@
 # define lm_L 6
 # define lm_R 7
 
-#define dwall 11
-#define df 7
+#define dwall 11  // distance to lateral walls 
+#define df 7      // distance to frontal wall 
 
 NewPing sonar[8] = {
   NewPing (TRIGGER_PIN1, ECHO_PIN1, MAX_DISTANCE),
@@ -97,11 +97,11 @@ byte Ultrasonics::action() {
    Serial.println(this->mesures[0]);
 
   // Take a decision: {0: Right, 1: Left; 2: Little left; 3: Little right; 4:Fwd}
-  if (this->mesures[4] < 11 && this->mesures[0] < 9 ) {
+  if (this->mesures[4] < dwall && this->mesures[0] < df ) {
    // Serial.println("Right");
     return 0;
   }
-  else if (this->mesures[6] <= 14 && this->mesures[0] < 10) {
+  else if (this->mesures[4] > dwall && this->mesures[0] < df) {
   //  Serial.println("Left");
     return 1;
   }
@@ -114,7 +114,7 @@ byte Ultrasonics::action() {
    // Serial.println("Little right");
     return 3;
   }
-  else if (this->mesures[0] > 9) {
+  else if (this->mesures[0] > df) {
    // Serial.println("enfrente");
     return 4;
   }
