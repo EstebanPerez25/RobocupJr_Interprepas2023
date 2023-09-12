@@ -45,15 +45,9 @@ Program::Program() {           // definicion de constructor
 // NAVIGATION METHODS
 void Program::algoritm() {
 
-
-
-  // parte de la navegacion del algoritmo
   byte action = Sensors.action();
   Maze.moves(action);
-
-
-
-
+       
 }
 
 // ********************* //

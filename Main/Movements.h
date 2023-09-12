@@ -20,14 +20,17 @@ class Movements {      // se crea la clase Movements.h
     uint8_t sm_FR;
     uint8_t sm_BR;
 
+
     // OBJECTS
     Servo servoFL;  // front-left
     Servo servoBL;  // back-left
     Servo servoFR;  // front-right
     Servo servoBR;  // back-right
 
-  public:                                                                                                                        
-    Movements(uint8_t _sm_FL, uint8_t _sm_BL, uint8_t _sm_FR, uint8_t _sm_BR);    // se declara el constructor                                                      
+  public:
+    Movements(uint8_t _sm_FL, uint8_t _sm_BL, uint8_t _sm_FR, uint8_t _sm_BR);    // se declara el constructor
+
+byte action;
 
 
     // METHODS                         // declaracion de metodos de movimiento
@@ -39,6 +42,7 @@ class Movements {      // se crea la clase Movements.h
     void lilRight();
     void stp();
     void limitS();
+    void moves(byte action);
 
 };
 
@@ -56,18 +60,17 @@ void Movements::forward() {       // metodo de movimiento hacia delante
   servoBR.attach(sm_BR);
 
 
-
   servoFL.write(140);  // 180
   servoBL.write(180);  // 180
   servoFR.write(30);   // 0
   servoBR.write(30);
 
-//  delay(step_size);
-//  servoFL.detach();
-//  servoBL.detach();
-//  servoFR.detach();
-//  servoBR.detach();
-//  delay(d);
+  //  delay(step_size);
+  //  servoFL.detach();
+  //  servoBL.detach();
+  //  servoFR.detach();
+  //  servoBR.detach();
+  //  delay(d);
 }
 
 void Movements::back() {               // metodo de movimiento hacia atras
@@ -77,18 +80,17 @@ void Movements::back() {               // metodo de movimiento hacia atras
   servoBR.attach(sm_BR);
 
 
-
   servoFL.write(0);
   servoBL.write(0);
   servoFR.write(180);
   servoBR.write(180);
-  delay(step_size);
-
-  servoFL.detach();
-  servoBL.detach();
-  servoFR.detach();
-  servoBR.detach();
-  delay(d);
+  //  delay(step_size);
+  //
+  //  servoFL.detach();
+  //  servoBL.detach();
+  //  servoFR.detach();
+  //  servoBR.detach();
+  //  delay(d);
 }
 
 void Movements::turnLeft() {                // metodo de giro a la izquierda
@@ -103,9 +105,9 @@ void Movements::turnLeft() {                // metodo de giro a la izquierda
   servoBL.write(0);
   servoFR.write(0);
   servoBR.write(0);
+
+
   delay(tl_size);
-
-
   servoFL.detach();
   servoBL.detach();
   servoFR.detach();
@@ -152,6 +154,8 @@ void Movements::lilLeft() {                   // metodo para pequeños pasos a l
   servoBL.write(0);
   servoFR.write(0);
   servoBR.write(0);
+
+
   delay(ll_size);
 
   servoFL.detach();
@@ -173,6 +177,8 @@ void Movements::lilRight() {                       // metodo para pequeños paso
   servoBL.write(180);
   servoFR.write(180);
   servoBR.write(180);
+
+
   delay(lr_size);
 
   servoFL.detach();
@@ -183,4 +189,28 @@ void Movements::lilRight() {                       // metodo para pequeños paso
 
 }
 
-  
+
+// Take a decision: {0: Right, 1: Left; 2: Little left; 3: Little right; 4:Fwd}
+void Movements::moves(byte action) {
+
+  //Movements mov = Movements(sm_FL, sm_BL, sm_FR, sm_BR);
+
+  switch (action) {
+    case 0:
+    this->turnRight();
+      break;
+    case 1:
+    this->turnLeft();
+      break;
+    case 2:
+    this->lilLeft();
+      break;
+    case 3:
+    this->lilRight();
+      break;
+    case 4:
+    this->forward();
+      break;
+  }
+
+}

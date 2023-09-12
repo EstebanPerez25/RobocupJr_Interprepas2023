@@ -90,30 +90,33 @@ void Ultrasonics::scan() {                    // metodo para escaneo de las medi
   }
 }
 
-byte action() {
+byte Ultrasonics::action() {
   // Scan
-  Ultrasonics ul = Ultrasonics();
-  ul.scan();
+ 
+  this->scan();
+   Serial.println(this->mesures[0]);
 
-  // Take a decision: {0: Fwd, 1: Left; 2: Right}
-  if (ul.mesures[4] < 11 && ul.mesures[0] < 9 ) {
-    //Serial.println("Right");
-    return 2;
+  // Take a decision: {0: Right, 1: Left; 2: Little left; 3: Little right; 4:Fwd}
+  if (this->mesures[4] < 11 && this->mesures[0] < 9 ) {
+   // Serial.println("Right");
+    return 0;
   }
-  else if (ul.mesures[6] <= 14 && ul.mesures[0] < 10) {
-    //Serial.println("Left");
+  else if (this->mesures[6] <= 14 && this->mesures[0] < 10) {
+  //  Serial.println("Left");
     return 1;
   }
 
   else if (digitalRead(lm_L) == HIGH) {
-    //Serial.println("Little left");
-    return 3;
+   // Serial.println("Little left");
+    return 2;
   }
   else if (digitalRead(lm_R) == HIGH) {
-    Maze.lilRight();
+   // Serial.println("Little right");
+    return 3;
   }
-  else if (ul.mesures[4] < 11 || ul.mesures[4] > 11 && ul.mesures[0] > 9) {
-    Serial.println("enfrente");
-    return 0;
+  else if (this->mesures[0] > 9) {
+   // Serial.println("enfrente");
+    return 4;
   }
+
 }
