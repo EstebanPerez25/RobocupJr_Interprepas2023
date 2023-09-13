@@ -1,54 +1,34 @@
-#include <Wire.h>
 #include <SPI.h>
 #include <Adafruit_GFX.h>
 #include <Adafruit_SSD1306.h>
-#include "I2Cdev.h"
 
+// Definir constantes
+#define ANCHO_PANTALLA 128 // ancho pantalla OLED
+#define ALTO_PANTALLA 64 // alto pantalla OLED
+
+
+// Objeto de la clase Adafruit_SSD1306
 Adafruit_SSD1306 display(ANCHO_PANTALLA, ALTO_PANTALLA, &Wire, -1);
 
-// MPU control
-bool dmpReady = false;  
-uint8_t mpuIntStatus;   
-uint8_t devStatus;      
-uint16_t packetSize;    
-uint16_t fifoCount;     
-uint8_t fifoBuffer[64]; 
+class Oled {
 
-void displayOLED() {
+  private:
 
-  display.clearDisplay();
 
-  display.setTextSize(9);
+  public:
+    Oled();
 
-  display.setTextColor(SSD1306_WHITE);
+    byte dispColor;
 
-  display.setCursor(40, 0);
-  
-  display.println("hola");
+    void initialOled();
+    void showDisp(byte dispColor);
 
-  display.display();
+};
+// constructor
+Oled::Oled() {
 
-  delay(5500);
-
-  display.clearDisplay();
-
-  display.display();
 }
-
-
-
-
-
-
-
-void setup() {
-
-#ifdef __DEBUG__
-  Serial.begin(115200);
-  delay(100);
-  Serial.println("Iniciando pantalla OLED");
-#endif
-
+void Oled::initialOled() {
   // Iniciar pantalla OLED en la dirección 0x3C
   if (!display.begin(SSD1306_SWITCHCAPVCC, 0x3C)) {
 #ifdef __DEBUG__
@@ -56,26 +36,79 @@ void setup() {
 #endif
     while (true);
   }
+}
+void Oled::showDisp(byte dispColor) {
+
+  switch (dispColor) {
+    case 5:
+ // Limpiar buffer
   display.clearDisplay();
 
   // Tamaño del texto
-  display.setTextSize(1);
+  display.setTextSize(9);
   // Color del texto
   display.setTextColor(SSD1306_WHITE);
   // Posición del texto
-  display.setCursor(10, 32);
+  display.setCursor(40, 0);
   // Escribir texto
-  display.println("EIAO BULLDOGERS !!!");
+  display.println("black");
 
   // Enviar a pantalla
   display.display();
 
-  Serial.println("* OLED  GOOD *"); delay(200);
+  delay(5500);
 
+  // Limpiar buffer
+  display.clearDisplay();
+  // Enviar a pantalla
+  display.display();
+      break;
+      
+    case 6:
+ // Limpiar buffer
+  display.clearDisplay();
 
+  // Tamaño del texto
+  display.setTextSize(9);
+  // Color del texto
+  display.setTextColor(SSD1306_WHITE);
+  // Posición del texto
+  display.setCursor(40, 0);
+  // Escribir texto
+  display.println("blue");
 
-void loop() {
+  // Enviar a pantalla
+  display.display();
 
-displayOLED();
+  delay(5500);
 
+  // Limpiar buffer
+  display.clearDisplay();
+  // Enviar a pantalla
+  display.display();
+      break;
+      
+    case 7:
+ // Limpiar buffer
+  display.clearDisplay();
+
+  // Tamaño del texto
+  display.setTextSize(9);
+  // Color del texto
+  display.setTextColor(SSD1306_WHITE);
+  // Posición del texto
+  display.setCursor(40, 0);
+  // Escribir texto
+  display.println("plate");
+
+  // Enviar a pantalla
+  display.display();
+
+  delay(5500);
+
+  // Limpiar buffer
+  display.clearDisplay();
+  // Enviar a pantalla
+  display.display();
+      break;
 }

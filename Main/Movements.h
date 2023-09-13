@@ -2,7 +2,7 @@
 #include <Servo.h>
 
 // Parameters
-#define d 300           // Delay after detach
+// #define d 300           // Delay after detach
 #define step_size 200   // Time of forward movement
 #define tl_size 940     // Turn left size
 #define tr_size 950     // Turn right size
@@ -112,7 +112,7 @@ void Movements::turnLeft() {                // metodo de giro a la izquierda
   servoBL.detach();
   servoFR.detach();
   servoBR.detach();
-  delay(d);
+  delay(300);
 }
 
 void Movements::turnRight() {                // metodo de giro hacia la derecha
@@ -132,7 +132,7 @@ void Movements::turnRight() {                // metodo de giro hacia la derecha
   servoBL.detach();
   servoFR.detach();
   servoBR.detach();
-  delay(d);
+  delay(300);
 }
 
 void Movements::stp() {                  // metodo para detenerse
@@ -140,7 +140,7 @@ void Movements::stp() {                  // metodo para detenerse
   servoBL.detach();
   servoFR.detach();
   servoBR.detach();
-  delay(d);
+  delay(300);
 }
 
 void Movements::lilLeft() {                   // metodo para pequeños pasos a la izquierda
@@ -162,7 +162,7 @@ void Movements::lilLeft() {                   // metodo para pequeños pasos a l
   servoBL.detach();
   servoFR.detach();
   servoBR.detach();
-  delay(d);
+  delay(300);
 
 }
 
@@ -185,7 +185,7 @@ void Movements::lilRight() {                       // metodo para pequeños paso
   servoBL.detach();
   servoFR.detach();
   servoBR.detach();
-  delay(d);
+  delay(300);
 
 }
 
@@ -210,6 +210,16 @@ void Movements::moves(byte action) {
       break;
     case 4:
     this->forward();
+      break;
+      case 5:
+    this->back();
+    this->turnRight();
+      break;
+      case 6:
+    this->stp();
+      break;
+      case 7:
+    this->stp();
       break;
   }
 

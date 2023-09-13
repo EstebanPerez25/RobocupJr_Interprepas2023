@@ -3,6 +3,8 @@
 #include "Movements.h"
 #include "Ultrasonics.h"
 #include "ColorSens.h"
+#include "Oled.h"
+ 
 
 // PINOUT
 //Servomotors
@@ -21,14 +23,9 @@ Movements Maze(sm_FL, sm_BL, sm_FR, sm_BR);    // objeto de clase Movements.h
 
 Ultrasonics Sensors;                           // objeto de clase Ultrasonics.h
 
-ColorSens floorColor;                              // objeto de clase ColorSens.h
+ColorSens floorColor;                          // objeto de clase ColorSens.h
 
-
-
-
-
-
-
+Oled Disp;                                     // objeto de clase Oled.h
 
 
 
@@ -40,7 +37,7 @@ class Program {    // se crea clase Program
     byte action_cs;   // Move suggested by color sensor
     byte action_cam;  // Move suggested by the camera
     byte action;      // The next action
-
+    byte showDisp;
 
   public:
     Program();     // declaracion de constructor
@@ -58,8 +55,9 @@ Program::Program() {           // definicion de constructor
 
 
 byte Program::navigation(byte action_us, byte action_cs, byte action_cam) {
-
-  return action_us;
+  //return action_us;
+action_cs = Disp.showDisp(showDisp);
+  
 }
 
 

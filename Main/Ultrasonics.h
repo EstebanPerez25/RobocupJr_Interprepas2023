@@ -63,7 +63,6 @@ class Ultrasonics {
     void scan();      // Read all sensors
     byte action();    // Return the best action suggested by the ultrasonics lectures
 
-
 };
 // CONSTRUCTOR
 Ultrasonics::Ultrasonics() {          // definicion de constructor
