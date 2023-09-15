@@ -1,6 +1,6 @@
- // ------------------------------
+// ------------------------------
 // LIBRARIES
-// ------------------------------                 
+// ------------------------------
 #include "Program.h"
 
 
@@ -25,7 +25,6 @@ Program Main;
 void setup() {
   Serial.begin(9600);
   Wire.begin();
-  Disp.initialOled();
 }
 
 
@@ -34,6 +33,6 @@ void setup() {
 // ------------------------------
 void loop() {
 
-Main.algoritm();
+  Main.algoritm();
 
 }

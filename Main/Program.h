@@ -4,7 +4,7 @@
 #include "Ultrasonics.h"
 #include "ColorSens.h"
 #include "Oled.h"
- 
+
 
 // PINOUT
 //Servomotors
@@ -37,10 +37,9 @@ class Program {    // se crea clase Program
     byte action_cs;   // Move suggested by color sensor
     byte action_cam;  // Move suggested by the camera
     byte action;      // The next action
-    byte showDisp;
 
   public:
-    Program();     // declaracion de constructor
+    Program();     // Constructor
 
 
     // Methods
@@ -55,9 +54,8 @@ Program::Program() {           // definicion de constructor
 
 
 byte Program::navigation(byte action_us, byte action_cs, byte action_cam) {
-  //return action_us;
-action_cs = Disp.showDisp(showDisp);
-  
+  //Disp.showDisp(action_cs);
+  return action_us;
 }
 
 
@@ -67,7 +65,7 @@ void Program::algoritm() {
   // 1. Read sensors (ultrasonic, color and camera)
   action_us = Sensors.action();
   action_cs = floorColor.action();
-  action_cam = 0;//Sensors.action();
+  action_cam = 0;//Cam.action();
 
   // 2. Decide the next movement
   action = navigation(action_us, action_cs, action_cam);

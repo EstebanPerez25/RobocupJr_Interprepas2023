@@ -13,23 +13,26 @@ Adafruit_SSD1306 display(ANCHO_PANTALLA, ALTO_PANTALLA, &Wire, -1);
 class Oled {
 
   private:
+    byte displayM;  // Message to display
 
 
   public:
+    // Constructor
     Oled();
 
-    byte dispColor;
-
-    void initialOled();
-    void showDisp(byte dispColor);
+    // Methods
+    void showDisp(byte displayM);
 
 };
-// constructor
-Oled::Oled() {
 
-}
-void Oled::initialOled() {
-  // Iniciar pantalla OLED en la dirección 0x3C
+
+
+
+// Constructor
+Oled::Oled() {
+  // Initalization in 0x3C
+
+
   if (!display.begin(SSD1306_SWITCHCAPVCC, 0x3C)) {
 #ifdef __DEBUG__
     Serial.println("No se encuentra la pantalla OLED");
@@ -37,78 +40,69 @@ void Oled::initialOled() {
     while (true);
   }
 }
-void Oled::showDisp(byte dispColor) {
 
-  switch (dispColor) {
+
+
+
+void Oled::showDisp(byte displayM) {
+  // Limpiar buffer
+  display.clearDisplay();
+
+
+  switch (displayM) {
     case 5:
- // Limpiar buffer
-  display.clearDisplay();
 
-  // Tamaño del texto
-  display.setTextSize(9);
-  // Color del texto
-  display.setTextColor(SSD1306_WHITE);
-  // Posición del texto
-  display.setCursor(40, 0);
-  // Escribir texto
-  display.println("black");
 
-  // Enviar a pantalla
-  display.display();
+      // Tamaño del texto
+      display.setTextSize(9);
+      // Color del texto
+      display.setTextColor(SSD1306_WHITE);
+      // Posición del texto
+      display.setCursor(40, 0);
+      // Escribir texto
+      display.println("black");
 
-  delay(5500);
+      // Enviar a pantalla
+      display.display();
 
-  // Limpiar buffer
-  display.clearDisplay();
-  // Enviar a pantalla
-  display.display();
+
       break;
-      
+
     case 6:
- // Limpiar buffer
-  display.clearDisplay();
 
-  // Tamaño del texto
-  display.setTextSize(9);
-  // Color del texto
-  display.setTextColor(SSD1306_WHITE);
-  // Posición del texto
-  display.setCursor(40, 0);
-  // Escribir texto
-  display.println("blue");
 
-  // Enviar a pantalla
-  display.display();
+      // Tamaño del texto
+      display.setTextSize(9);
+      // Color del texto
+      display.setTextColor(SSD1306_WHITE);
+      // Posición del texto
+      display.setCursor(40, 0);
+      // Escribir texto
+      display.println("blue");
 
-  delay(5500);
+      // Enviar a pantalla
+      display.display();
 
-  // Limpiar buffer
-  display.clearDisplay();
-  // Enviar a pantalla
-  display.display();
+
       break;
-      
+
     case 7:
- // Limpiar buffer
-  display.clearDisplay();
 
-  // Tamaño del texto
-  display.setTextSize(9);
-  // Color del texto
-  display.setTextColor(SSD1306_WHITE);
-  // Posición del texto
-  display.setCursor(40, 0);
-  // Escribir texto
-  display.println("plate");
 
-  // Enviar a pantalla
-  display.display();
 
-  delay(5500);
+      // Tamaño del texto
+      display.setTextSize(9);
+      // Color del texto
+      display.setTextColor(SSD1306_WHITE);
+      // Posición del texto
+      display.setCursor(40, 0);
+      // Escribir texto
+      display.println("plate");
 
-  // Limpiar buffer
-  display.clearDisplay();
-  // Enviar a pantalla
-  display.display();
+      // Enviar a pantalla
+      display.display();
+
+
       break;
+  }
 }
