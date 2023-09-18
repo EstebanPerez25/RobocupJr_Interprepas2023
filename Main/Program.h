@@ -20,12 +20,9 @@
 
 // OBJECTS
 Movements Maze(sm_FL, sm_BL, sm_FR, sm_BR);    // objeto de clase Movements.h
-
 Ultrasonics Sensors;                           // objeto de clase Ultrasonics.h
-
 ColorSens floorColor;                          // objeto de clase ColorSens.h
-
-Oled Disp;                                     // objeto de clase Oled.h
+//Oled oled;                                     // objeto de clase Oled.h
 
 
 
@@ -49,12 +46,15 @@ class Program {    // se crea clase Program
 };
 
 // CONSTRUCTOR
-Program::Program() {           // definicion de constructor
+Program::Program() {
+  Wire.begin();
+  Serial.begin(9600);  
+  Serial.println("OK PROGRAM");
 }
 
 
 byte Program::navigation(byte action_us, byte action_cs, byte action_cam) {
-  //Disp.showDisp(action_cs);
+  //oled.showDisp(action_cs);
   return action_us;
 }
 
@@ -64,7 +64,7 @@ void Program::algoritm() {
 
   // 1. Read sensors (ultrasonic, color and camera)
   action_us = Sensors.action();
-  action_cs = floorColor.action();
+  action_cs = 0;//floorColor.action();
   action_cam = 0;//Cam.action();
 
   // 2. Decide the next movement

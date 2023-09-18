@@ -3,7 +3,6 @@
 // ------------------------------
 #include "Program.h"
 
-
 // ------------------------------
 // PINOUT
 // ------------------------------
@@ -24,7 +23,7 @@ Program Main;
 // ------------------------------
 void setup() {
   Serial.begin(9600);
-  Wire.begin();
+  Serial.println("OK SETUP");
 }
 
 
@@ -32,7 +31,5 @@ void setup() {
 // VOID LOOP
 // ------------------------------
 void loop() {
-
-  Main.algoritm();
-
+    Main.algoritm();
 }

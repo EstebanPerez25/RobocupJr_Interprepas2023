@@ -30,7 +30,7 @@ class Movements {      // se crea la clase Movements.h
   public:
     Movements(uint8_t _sm_FL, uint8_t _sm_BL, uint8_t _sm_FR, uint8_t _sm_BR);    // se declara el constructor
 
-byte action;
+    byte action;
 
 
     // METHODS                         // declaracion de metodos de movimiento
@@ -51,6 +51,11 @@ Movements::Movements(uint8_t _sm_FL, uint8_t _sm_BL, uint8_t _sm_FR, uint8_t _sm
   sm_BL = _sm_BL;
   sm_FR = _sm_FR;
   sm_BR = _sm_BR;
+
+  Serial.begin(9600);
+  Serial.println("Servos OK");
+
+
 }
 
 void Movements::forward() {       // metodo de movimiento hacia delante
@@ -197,29 +202,29 @@ void Movements::moves(byte action) {
 
   switch (action) {
     case 0:
-    this->turnRight();
+      this->turnRight();
       break;
     case 1:
-    this->turnLeft();
+      this->turnLeft();
       break;
     case 2:
-    this->lilLeft();
+      this->lilLeft();
       break;
     case 3:
-    this->lilRight();
+      this->lilRight();
       break;
     case 4:
-    this->forward();
+      this->forward();
       break;
-      case 5:
-    this->back();
-    this->turnRight();
+    case 5:
+      this->back();
+      this->turnRight();
       break;
-      case 6:
-    this->stp();
+    case 6:
+      this->stp();
       break;
-      case 7:
-    this->stp();
+    case 7:
+      this->stp();
       break;
   }
 

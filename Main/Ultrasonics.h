@@ -66,7 +66,8 @@ class Ultrasonics {
 };
 // CONSTRUCTOR
 Ultrasonics::Ultrasonics() {          // definicion de constructor
-
+  Serial.begin(9600);
+  Serial.println("Ultrasonics OK");
 }
 
 
@@ -91,30 +92,30 @@ void Ultrasonics::scan() {                    // metodo para escaneo de las medi
 
 byte Ultrasonics::action() {
   // Scan
- 
+
   this->scan();
-   Serial.println(this->mesures[0]);
+  Serial.println(this->mesures[0]);
 
   // Take a decision: {0: Right, 1: Left; 2: Little left; 3: Little right; 4:Fwd}
   if (this->mesures[4] < dwall && this->mesures[0] < df ) {
-   // Serial.println("Right");
+    // Serial.println("Right");
     return 0;
   }
   else if (this->mesures[4] > dwall && this->mesures[0] < df) {
-  //  Serial.println("Left");
+    //  Serial.println("Left");
     return 1;
   }
 
   else if (digitalRead(lm_L) == HIGH) {
-   // Serial.println("Little left");
+    // Serial.println("Little left");
     return 2;
   }
   else if (digitalRead(lm_R) == HIGH) {
-   // Serial.println("Little right");
+    // Serial.println("Little right");
     return 3;
   }
   else if (this->mesures[0] > df) {
-   // Serial.println("enfrente");
+    // Serial.println("enfrente");
     return 4;
   }
 

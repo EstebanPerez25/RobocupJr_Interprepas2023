@@ -32,12 +32,13 @@ class Oled {
 Oled::Oled() {
   // Initalization in 0x3C
 
-
+  Serial.begin(9600);
+  Serial.println("OLED OK");
   if (!display.begin(SSD1306_SWITCHCAPVCC, 0x3C)) {
 #ifdef __DEBUG__
     Serial.println("No se encuentra la pantalla OLED");
 #endif
-    while (true);
+    //while (true);
   }
 }
 
