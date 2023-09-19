@@ -21,8 +21,6 @@ class ColorSens {
     byte action();
 };
 
-
-
 // Constructor
 ColorSens::ColorSens() {
 
