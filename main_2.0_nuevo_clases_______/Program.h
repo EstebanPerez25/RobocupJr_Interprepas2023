@@ -53,10 +53,28 @@ Program::Program() {
 
 
 byte Program::navigation(byte action_us, byte action_cs/*, byte action_cam*/) {
-  return action_cs;
-  // oled.showDisp(action_cs);
-  // return action_cam;
-  return action_us;
+
+  switch (action_cs) {
+    case 5:
+      // Black floor
+      return 5;
+      break;
+    
+    case 6:
+      // Blue
+      return 6;
+      break;
+
+    case 7:
+      // Plate
+      return 6;
+      break;
+
+    case 8:
+      // White
+      return action_us;
+  }
+  
 }
 
 
