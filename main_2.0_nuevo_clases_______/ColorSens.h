@@ -81,4 +81,9 @@ Serial.println("azul");
 Serial.println("plata");
    return 7;
 }
+    
+// Blanco
+  else {
+    return 8;
+  }
 }
