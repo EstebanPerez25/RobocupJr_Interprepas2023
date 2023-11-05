@@ -69,18 +69,18 @@ byte ColorSens::action() {
 
   // negro
   if ( this->r > rgbMatrix[0][0] - t &&  this->r < rgbMatrix[0][0] + t && this->g > rgbMatrix[0][1] - t &&  this->g < rgbMatrix[0][1] + t && this->b > rgbMatrix[0][2] - t &&  this->b < rgbMatrix[0][2] + t) {
-    Serial.println("negro");
+    //Serial.println("negro");
     return 5;
   }
   // azul
   else if ( this->r > rgbMatrix[1][0] - t &&  this->r < rgbMatrix[1][0] + t && this->g > rgbMatrix[1][1] - t &&  this->g < rgbMatrix[1][1] + t && this->b > rgbMatrix[1][2] - t &&  this->b < rgbMatrix[1][2] + t) {
-    Serial.println("azul");
+    //Serial.println("azul");
     return 6;
   }
 
   // plata
   else if ( this->r > rgbMatrix[2][0] - t &&  this->r < rgbMatrix[2][0] + t && this->g > rgbMatrix[2][1] - t &&  this->g < rgbMatrix[2][1] + t && this->b > rgbMatrix[2][2] - t &&  this->b < rgbMatrix[2][2] + t) {
-    Serial.println("plata");
+    //Serial.println("plata");
     return 7;
   }
 
