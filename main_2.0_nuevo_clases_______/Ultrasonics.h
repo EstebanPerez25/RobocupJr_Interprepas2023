@@ -52,10 +52,10 @@ NewPing sonar[8] = {
 
 class Ultrasonics {
   private:
-   
+
 
   public:
-  
+
     float mesures[8];          // variable de mediciones en este caso de 8 sensores
 
 
@@ -64,13 +64,13 @@ class Ultrasonics {
     // METHODS
     void scan();      // Read all sensors
     byte action();    // Return the best action suggested by the ultrasonics lectures
- 
-    
+
+
 
 };
 // CONSTRUCTOR
 Ultrasonics::Ultrasonics() {          // definicion de constructor
- Serial.begin(9600);
+  Serial.begin(9600);
   Serial.println("OK ULTRASONICS");
 }
 
@@ -96,7 +96,7 @@ void Ultrasonics::scan() {                    // metodo para escaneo de las medi
 
 byte Ultrasonics::action() {
   // Scan
-  
+
   this->scan();
 
 
@@ -119,8 +119,8 @@ byte Ultrasonics::action() {
     return 3;
   }
   else if (this->mesures[0] > df) {
-    Serial.println("enfrente");
+    Serial.println("Enfrente");
     return 4;
   }
- 
+
 }
