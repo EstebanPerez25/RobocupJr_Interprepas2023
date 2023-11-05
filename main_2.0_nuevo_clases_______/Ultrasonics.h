@@ -35,7 +35,7 @@
 # define lm_R 8
 
 #define dwall 11  // distance to lateral walls 
-#define df 7      // distance to frontal wall 
+#define df 12      // distance to frontal wall 
 
 NewPing sonar[8] = {
   NewPing (TRIGGER_PIN1, ECHO_PIN1, MAX_DISTANCE),
@@ -53,11 +53,8 @@ NewPing sonar[8] = {
 class Ultrasonics {
   private:
 
-
-  public:
-
     float mesures[8];          // variable de mediciones en este caso de 8 sensores
-
+  public:
 
     Ultrasonics();             // declaracion de constructor
 
@@ -65,9 +62,10 @@ class Ultrasonics {
     void scan();      // Read all sensors
     byte action();    // Return the best action suggested by the ultrasonics lectures
 
-
-
 };
+
+
+
 // CONSTRUCTOR
 Ultrasonics::Ultrasonics() {          // definicion de constructor
   Serial.begin(9600);
