@@ -3,9 +3,9 @@
 
 // Parameters
 // #define d 300           // Delay after detach
-#define step_size 250   // Time of forward movement
-#define tl_size 1200     // Turn left size
-#define tr_size 1210     // Turn right size
+#define step_size 410   // Time of forward movement
+#define tl_size 1320     // Turn left size
+#define tr_size 1280     // Turn right size
 #define ll_size (940/4)     // Little turn left size
 #define lr_size (950/4)     // Little turn left size
 
