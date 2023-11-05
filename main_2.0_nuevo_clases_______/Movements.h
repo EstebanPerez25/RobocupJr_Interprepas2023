@@ -223,7 +223,9 @@ void Movements::moves(byte action) {
       break;
     case 6:
       this->stp();
-      delay(2000);
+      delay(3000);
+      this->forward();
+      delay(800);
       break;
     case 7:
       this->stp();
