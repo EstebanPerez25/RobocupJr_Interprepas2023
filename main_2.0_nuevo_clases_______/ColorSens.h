@@ -11,7 +11,7 @@ class ColorSens {
     // OBJECT
     Adafruit_TCS34725 tcs = Adafruit_TCS34725();
     uint16_t r, g, b, c, colorTemp, lux;
-    int rgbMatrix [3][3];
+    int rgbMatrix[9] = {0, 0, 0, 1, 1, 1, 1, 0, 1};
 
   public:
     ColorSens();
@@ -26,13 +26,6 @@ ColorSens::ColorSens() {
 
   Serial.begin(9600);
   Serial.println("OK COLORSENSOR");
-
-  // Define rgb matrix
-  int rgbMatrix[3][3] = {  // Rgb values for each color
-    {0, 0, 0},
-    {1, 1, 1},
-    {1, 0, 1}
-  };
 
 //  // Intialize the sensor
 //  if (!tcs.begin()) {
@@ -54,9 +47,9 @@ void ColorSens::rgbValues() {
   lux = tcs.calculateLux(r, g, b);
 //    Serial.print("Temperatura color: "); Serial.print(colorTemp, DEC); Serial.println(" K");
 //    Serial.print("Lux : "); Serial.println(lux, DEC);
-//    Serial.print("R: "); Serial.println(r, DEC);
-//    Serial.print("G: "); Serial.println(g, DEC);
-//    Serial.print("B: "); Serial.println(b, DEC);
+    Serial.print("R: "); Serial.println(r, DEC);
+    Serial.print("G: "); Serial.println(g, DEC);
+    Serial.print("B: "); Serial.println(b, DEC);
 //    Serial.print("Clear: "); Serial.println(c, DEC);
 //    Serial.println(" ");
   delay(10);
@@ -68,24 +61,25 @@ byte ColorSens::action() {
   this->rgbValues();
 
   // negro
-  if ( this->r > rgbMatrix[0][0] - t &&  this->r < rgbMatrix[0][0] + t && this->g > rgbMatrix[0][1] - t &&  this->g < rgbMatrix[0][1] + t && this->b > rgbMatrix[0][2] - t &&  this->b < rgbMatrix[0][2] + t) {
-    //Serial.println("negro");
+  if ( this->r == rgbMatrix[0] && this->g == rgbMatrix[1] && this->b == rgbMatrix[2]) {
+    Serial.println("negro");
     return 5;
   }
   // azul
-  else if ( this->r > rgbMatrix[1][0] - t &&  this->r < rgbMatrix[1][0] + t && this->g > rgbMatrix[1][1] - t &&  this->g < rgbMatrix[1][1] + t && this->b > rgbMatrix[1][2] - t &&  this->b < rgbMatrix[1][2] + t) {
-    //Serial.println("azul");
+  else if ( this->r == rgbMatrix[3] && this->g == rgbMatrix[4] && this->b == rgbMatrix[5]) {
+    Serial.println("azul");
     return 6;
   }
 
   // plata
-  else if ( this->r > rgbMatrix[2][0] - t &&  this->r < rgbMatrix[2][0] + t && this->g > rgbMatrix[2][1] - t &&  this->g < rgbMatrix[2][1] + t && this->b > rgbMatrix[2][2] - t &&  this->b < rgbMatrix[2][2] + t) {
+  else if ( this->r == rgbMatrix[6] && this->g == rgbMatrix[7] && this->b == rgbMatrix[8]) {
     //Serial.println("plata");
     return 7;
   }
 
   // Blanco
   else {
+    Serial.println("Blanco");
     return 8;
   }
 }
