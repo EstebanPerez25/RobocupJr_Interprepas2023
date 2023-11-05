@@ -52,13 +52,13 @@ void ColorSens::rgbValues() {
   tcs.getRawData(&r, &g, &b, &c);
   colorTemp = tcs.calculateColorTemperature(r, g, b);
   lux = tcs.calculateLux(r, g, b);
-    Serial.print("Temperatura color: "); Serial.print(colorTemp, DEC); Serial.println(" K");
-    Serial.print("Lux : "); Serial.println(lux, DEC);
-    Serial.print("R: "); Serial.println(r, DEC);
-    Serial.print("G: "); Serial.println(g, DEC);
-    Serial.print("B: "); Serial.println(b, DEC);
-    Serial.print("Clear: "); Serial.println(c, DEC);
-    Serial.println(" ");
+//    Serial.print("Temperatura color: "); Serial.print(colorTemp, DEC); Serial.println(" K");
+//    Serial.print("Lux : "); Serial.println(lux, DEC);
+//    Serial.print("R: "); Serial.println(r, DEC);
+//    Serial.print("G: "); Serial.println(g, DEC);
+//    Serial.print("B: "); Serial.println(b, DEC);
+//    Serial.print("Clear: "); Serial.println(c, DEC);
+//    Serial.println(" ");
   delay(10);
 }
 
