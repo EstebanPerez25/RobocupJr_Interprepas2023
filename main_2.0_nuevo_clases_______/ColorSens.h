@@ -11,7 +11,10 @@ class ColorSens {
     // OBJECT
     Adafruit_TCS34725 tcs = Adafruit_TCS34725();
     uint16_t r, g, b, c, colorTemp, lux;
-    int rgbMatrix[9] = {0, 0, 0, 1, 1, 1, 1, 0, 1};
+    int rgbMatrix[9] = {0, 0, 0,
+                        1, 2, 3,
+                        1, 0, 1
+                       };
 
   public:
     ColorSens();
@@ -27,11 +30,11 @@ ColorSens::ColorSens() {
   Serial.begin(9600);
   Serial.println("OK COLORSENSOR");
 
-//  // Intialize the sensor
-//  if (!tcs.begin()) {
-//    Serial.println("Error al iniciar TCS34725");
-//    while (1) delay(1000);
-//  }
+  //  // Intialize the sensor
+  //  if (!tcs.begin()) {
+  //    Serial.println("Error al iniciar TCS34725");
+  //    while (1) delay(1000);
+  //  }
 
 
 
@@ -45,13 +48,13 @@ void ColorSens::rgbValues() {
   tcs.getRawData(&r, &g, &b, &c);
   colorTemp = tcs.calculateColorTemperature(r, g, b);
   lux = tcs.calculateLux(r, g, b);
-//    Serial.print("Temperatura color: "); Serial.print(colorTemp, DEC); Serial.println(" K");
-//    Serial.print("Lux : "); Serial.println(lux, DEC);
-    Serial.print("R: "); Serial.println(r, DEC);
-    Serial.print("G: "); Serial.println(g, DEC);
-    Serial.print("B: "); Serial.println(b, DEC);
-//    Serial.print("Clear: "); Serial.println(c, DEC);
-//    Serial.println(" ");
+  Serial.print("Temperatura color: "); Serial.print(colorTemp, DEC); Serial.println(" K");
+  Serial.print("Lux : "); Serial.println(lux, DEC);
+  Serial.print("R: "); Serial.println(r, DEC);
+  Serial.print("G: "); Serial.println(g, DEC);
+  Serial.print("B: "); Serial.println(b, DEC);
+  //    Serial.print("Clear: "); Serial.println(c, DEC);
+  //    Serial.println(" ");
   delay(10);
 }
 
