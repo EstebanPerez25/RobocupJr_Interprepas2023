@@ -31,7 +31,7 @@ class Program {    // se crea clase Program
     // Atributes
     byte action_us;   // Move suggested by ultrasonic sensors
     byte action_cs;   // Move suggested by color sensor
-//    byte action_cam;  // Move suggested by the camera
+    //    byte action_cam;  // Move suggested by the camera
     byte action;      // The next action
 
   public:
@@ -39,7 +39,7 @@ class Program {    // se crea clase Program
 
 
     // Methods
-    byte navigation(byte action_us, byte action_cs/*, byte action_cam*/);  // Takes the actions ssuggested by the sensors and takes a decision
+    byte navigation(byte action_us/*, byte action_cs, byte action_cam*/);  // Takes the actions ssuggested by the sensors and takes a decision
     void algoritm();
 
 };
@@ -48,33 +48,31 @@ class Program {    // se crea clase Program
 Program::Program() {
   Serial.begin(9600);
   Serial.println("OK PROGRAM");
-  
 }
 
 
-byte Program::navigation(byte action_us, byte action_cs/*, byte action_cam*/) {
+byte Program::navigation(byte action_us/*, byte action_cs, byte action_cam*/) {
 
-  switch (action_cs) {
-    case 5:
-      // Black floor
-      return 5;
-      break;
-    
-    case 6:
-      // Blue
-      return 6;
-      break;
-
-    case 7:
-      // Plate
-      return 6;
-      break;
-
-    case 8:
-      // White
-      return action_us;
-  }
-  
+//  switch (action_cs) {
+//    case 5:
+//      // Black floor
+//      return 5;
+//      break;
+//
+//    case 6:
+//      // Blue
+//      return 6;
+//      break;
+//
+//    case 7:
+//      // Plate
+//      return 6;
+//      break;
+//
+//    case 8:
+//      // White
+//      return action_us;
+//  }
 }
 
 
@@ -84,13 +82,15 @@ void Program::algoritm() {
   // 1. Read sensors (ultrasonic, color and camera)
   action_us = Sensors.action();
   action_cs = floorColor.action();
-//  action_cam = 0;//Cam.action();
+  Serial.println(action_us);
+
+  //  action_cam = 0;//Cam.action();
 
   // 2. Decide the next movement
-  action = navigation(action_us, action_cs/*, action_cam*/);
+  //action = navigation(action_us, action_cs/*, action_cam*/);
 
   //3. Movement
-  Maze.moves(action);
+  //Maze.moves(action);
 
 }
 
