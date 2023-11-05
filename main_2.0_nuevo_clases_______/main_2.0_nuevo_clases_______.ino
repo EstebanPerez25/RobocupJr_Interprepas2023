@@ -2,7 +2,7 @@
 // LIBRARIES
 // ------------------------------
 #include "Program.h"
-//#include "ColorSens.h"
+
 // ------------------------------
 // PINOUT
 // ------------------------------
@@ -14,7 +14,7 @@
 // OBJECTS
 // ------------------------------
 Program Main;
-//ColorSens floorColor;    
+
 
 
 
@@ -22,10 +22,10 @@ Program Main;
 // VOID SETUP
 // ------------------------------
 void setup() {
-   
+
   Serial.begin(9600);
   Serial.println("OK SETUP");
-//  delay(500);
+  delay(500);
 }
 
 
@@ -33,6 +33,5 @@ void setup() {
 // VOID LOOP
 // ------------------------------
 void loop() {
-    Main.algoritm();
-    //floorColor.rgbValues();
+  Main.algoritm();
 }
