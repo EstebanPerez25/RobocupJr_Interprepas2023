@@ -53,7 +53,7 @@ Movements::Movements(uint8_t _sm_FL, uint8_t _sm_BL, uint8_t _sm_FR, uint8_t _sm
   sm_BR = _sm_BR;
 
   Serial.begin(9600);
-  Serial.println("Servos OK");
+  Serial.println("OK MOVEMENTS");
 
 
 }
@@ -89,7 +89,7 @@ void Movements::back() {               // metodo de movimiento hacia atras
   servoBL.write(0);
   servoFR.write(180);
   servoBR.write(180);
-    delay(step_size);
+  delay(step_size);
   //
   //  servoFL.detach();
   //  servoBL.detach();
