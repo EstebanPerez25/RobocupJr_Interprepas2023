@@ -12,7 +12,7 @@ class ColorSens {
     Adafruit_TCS34725 tcs = Adafruit_TCS34725();
     uint16_t r, g, b, c, colorTemp, lux;
     int rgbMatrix[9] = {0, 0, 0,
-                        1, 2, 3,
+                        1, 1, 1,
                         1, 0, 1
                        };
 
@@ -50,9 +50,9 @@ void ColorSens::rgbValues() {
   lux = tcs.calculateLux(r, g, b);
 //  Serial.print("Temperatura color: "); Serial.print(colorTemp, DEC); Serial.println(" K");
 //  Serial.print("Lux : "); Serial.println(lux, DEC);
-//  Serial.print("R: "); Serial.println(r, DEC);
-//  Serial.print("G: "); Serial.println(g, DEC);
-//  Serial.print("B: "); Serial.println(b, DEC);
+  Serial.print("R: "); Serial.println(r, DEC);
+  Serial.print("G: "); Serial.println(g, DEC);
+  Serial.print("B: "); Serial.println(b, DEC);
   //    Serial.print("Clear: "); Serial.println(c, DEC);
   //    Serial.println(" ");
   delay(10);
