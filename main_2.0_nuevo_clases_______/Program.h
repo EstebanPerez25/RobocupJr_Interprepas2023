@@ -39,7 +39,7 @@ class Program {    // se crea clase Program
 
 
     // Methods
-    byte navigation(byte action_us/*, byte action_cs, byte action_cam*/);  // Takes the actions ssuggested by the sensors and takes a decision
+    byte navigation(byte action_us, byte action_cs/*, byte action_cam*/);  // Takes the actions ssuggested by the sensors and takes a decision
     void algoritm();
 
 };
@@ -51,28 +51,28 @@ Program::Program() {
 }
 
 
-byte Program::navigation(byte action_us/*, byte action_cs, byte action_cam*/) {
+byte Program::navigation(byte action_us, byte action_cs/*, byte action_cam*/) {
 
-//  switch (action_cs) {
-//    case 5:
-//      // Black floor
-//      return 5;
-//      break;
-//
-//    case 6:
-//      // Blue
-//      return 6;
-//      break;
-//
-//    case 7:
-//      // Plate
-//      return 6;
-//      break;
-//
-//    case 8:
-//      // White
-//      return action_us;
-//  }
+  //  switch (action_cs) {
+  //    case 5:
+  //      // Black floor
+  //      return 5;
+  //      break;
+  //
+  //    case 6:
+  //      // Blue
+  //      return 6;
+  //      break;
+  //
+  //    case 7:
+  //      // Plate
+  //      return 6;
+  //      break;
+  //
+  //    case 8:
+  //      // White
+  //      return action_us;
+  //  }
 }
 
 
@@ -82,13 +82,12 @@ void Program::algoritm() {
   // 1. Read sensors (ultrasonic, color and camera)
   action_us = Sensors.action();
   action_cs = floorColor.action();
-  Serial.println(action_us);
 
   //  action_cam = 0;//Cam.action();
 
   // 2. Decide the next movement
-  //action = navigation(action_us, action_cs/*, action_cam*/);
-
+  action = navigation(action_us, action_cs/*, action_cam*/);
+  Serial.print(action);
   //3. Movement
   //Maze.moves(action);
 
