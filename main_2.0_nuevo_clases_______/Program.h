@@ -87,7 +87,7 @@ void Program::algoritm() {
 
   // 2. Decide the next movement
   action = navigation(action_us, action_cs/*, action_cam*/);
-  //Serial.println(action);
+  Serial.println(action);
   
   //3. Movement
   Maze.moves(action);
