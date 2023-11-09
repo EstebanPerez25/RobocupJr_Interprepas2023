@@ -25,8 +25,8 @@
 #define TRIGGER_PIN7  35          // ultrasonico derecho trasero 
 #define ECHO_PIN7     34
 
-#define TRIGGER_PIN8  37          // ultrasonico derecho enfrente 
-#define ECHO_PIN8     36
+#define TRIGGER_PIN8  41          // ultrasonico derecho enfrente 
+#define ECHO_PIN8     40
 
 #define MAX_DISTANCE 200        // variable de distancia maxima 
 
@@ -85,9 +85,11 @@ void Ultrasonics::scan() {                    // metodo para escaneo de las medi
        4. LB
        5. B
        6. RB
-       7. BF
+       7. RF
     */
     mesures[i] = sonar[i].ping_cm();
+    Serial.println( mesures[7]);
+   
     delay(7);
   }
 }
