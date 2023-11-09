@@ -33,5 +33,5 @@ void setup() {
 // VOID LOOP
 // ------------------------------
 void loop() {
-  //Main.algoritm();
+  Main.algoritm();
 }
