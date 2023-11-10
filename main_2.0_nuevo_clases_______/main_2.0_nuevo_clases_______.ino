@@ -1,8 +1,7 @@
 // ------------------------------
 // LIBRARIES
 // ------------------------------
-#include "Program.h"
-
+//#include "Program.h"
 // ------------------------------
 // PINOUT
 // ------------------------------
@@ -13,8 +12,7 @@
 // ------------------------------
 // OBJECTS
 // ------------------------------
-Program Main;
-
+//Program Main;
 
 
 
@@ -33,5 +31,7 @@ void setup() {
 // VOID LOOP
 // ------------------------------
 void loop() {
-  Main.algoritm();
+ // Main.algoritm();
+//Movements Maze(sm_FL, sm_BL, sm_FR, sm_BR);   Sensors.scan();
+
 }
