@@ -41,7 +41,7 @@ byte Dispenser::drop(byte action) {
     case 0:
       servoDis.write(120);
       delay(500);
-      servoDis.write(90);
+      servoDis.write(170);
       delay(500);
       break;
 
@@ -49,11 +49,11 @@ byte Dispenser::drop(byte action) {
     case 1:
       servoDis.write(120);
       delay(500);
-      servoDis.write(90);
+      servoDis.write(170);
       delay(500);
       servoDis.write(120);
       delay(500);
-      servoDis.write(90);
+      servoDis.write(170);
       delay(500);
       break;
   }
