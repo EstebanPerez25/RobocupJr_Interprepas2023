@@ -16,7 +16,7 @@
 #define sm_Dis 9
 #define p1 10
 #define p2 11
-#define p3 12
+
 
 // mesures of the ultrasonics .
 #define dwall 11
@@ -28,7 +28,7 @@ Ultrasonics Sensors;                           // objeto de clase Ultrasonics.h
 ColorSens floorColor;                          // objeto de clase ColorSens.h
 Oled oled;                                    // objeto de clase Oled.h
 Dispenser disp(sm_Dis);                       // objeto de clase Dispenser.h
-CameraESP Cam(p1, p2, p3);                       // objeto de clase Dispenser.h
+CameraESP Cam(p1, p2);                       // objeto de clase Dispenser.h
 
 
 
@@ -99,7 +99,7 @@ void Program::algoritm() {
   action_cam = Cam.action();
 
   // 2. Decide the next movement
-  action = navigation(action_us, action_cs/*, action_cam*/);
+  action = navigation(action_us, action_cs, action_cam);
   Serial.println(action);
 
   //3. Movement
