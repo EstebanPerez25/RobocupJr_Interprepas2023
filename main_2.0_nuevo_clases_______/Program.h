@@ -1,10 +1,10 @@
 // LIBRARIES
 #include "Movements.h"
 #include "Ultrasonics.h"
-#include "ColorSens.h"
-#include "Oled.h"
+//#include "ColorSens.h"
+//#include "Oled.h"
 #include "Dispenser.h"
-#include "CameraESP.h"
+//#include "CameraESP.h"
 
 
 // PINOUT
@@ -25,10 +25,10 @@
 // OBJECTS
 Movements Maze(sm_FL, sm_BL, sm_FR, sm_BR);    // objeto de clase Movements.h
 Ultrasonics Sensors;                           // objeto de clase Ultrasonics.h
-ColorSens floorColor;                          // objeto de clase ColorSens.h
-Oled oled;                                    // objeto de clase Oled.h
+//ColorSens floorColor;                          // objeto de clase ColorSens.h
+//Oled oled;                                    // objeto de clase Oled.h
 Dispenser disp(sm_Dis);                       // objeto de clase Dispenser.h
-CameraESP Cam(p1, p2);                       // objeto de clase Dispenser.h
+//CameraESP Cam(p1, p2);                       // objeto de clase Dispenser.h
 
 
 
@@ -63,13 +63,13 @@ byte Program::navigation(byte action_us, byte action_cs, byte action_cam) {
   switch (action_cs) {
     case 5:
       // Black floor
-      oled.showDisp(5);
+      //oled.showDisp(5);
       return 5;
       break;
 
     case 6:
       // Blue
-      oled.showDisp(6);
+      //oled.showDisp(6);
       return 6;
       break;
 
@@ -94,9 +94,9 @@ void Program::algoritm() {
 
   // 1. Read sensors (ultrasonic, color and camera)
   action_us = Sensors.action();
-  action_cs = floorColor.action();
+  action_cs = 1;//floorColor.action();
 
-  action_cam = Cam.action();
+  action_cam = 4;//Cam.action();
 
   // 2. Decide the next movement
   action = navigation(action_us, action_cs, action_cam);
@@ -104,8 +104,10 @@ void Program::algoritm() {
 
   //3. Movement
   Maze.moves(action);
-
 }
+
+
+
 
 // ********************* //
 //         NOTAS         //
