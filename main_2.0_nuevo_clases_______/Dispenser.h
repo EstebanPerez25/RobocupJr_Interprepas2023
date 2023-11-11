@@ -30,7 +30,7 @@ Dispenser::Dispenser(uint8_t _sm_Dis) {
 
 
   Serial.begin(9600);
-  Serial.println("OK COLORSENSOR");
+  Serial.println("OK DISPENSER");
 }
 
 
