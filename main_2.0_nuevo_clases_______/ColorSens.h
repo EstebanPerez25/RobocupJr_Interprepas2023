@@ -29,6 +29,7 @@ ColorSens::ColorSens() {
 
   Serial.begin(9600);
   Serial.println("OK COLORSENSOR");
+  //delay(150);
 
   //  // Intialize the sensor
   //  if (!tcs.begin()) {
