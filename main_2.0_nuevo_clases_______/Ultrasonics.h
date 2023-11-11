@@ -109,15 +109,15 @@ byte Ultrasonics::action() {
     //Serial.println("Left");
     return 1;
   }
-
-  else if (digitalRead(lm_L) == HIGH) {
-    //Serial.println("Little left");
-    return 2;
-  }
-  else if (digitalRead(lm_R) == HIGH) {
-    //Serial.println("Little right");
-    return 3;
-  }
+//
+//  else if (digitalRead(lm_L) == HIGH) {
+//    //Serial.println("Little left");
+//    return 2;
+//  }
+//  else if (digitalRead(lm_R) == HIGH) {
+//    //Serial.println("Little right");
+//    return 3;
+//  }
   else if (this->mesures[0] > df) {
     //Serial.println("Enfrente");
     return 4;
