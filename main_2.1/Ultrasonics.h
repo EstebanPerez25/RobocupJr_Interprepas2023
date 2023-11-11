@@ -69,6 +69,8 @@ class Ultrasonics {
 // CONSTRUCTOR
 Ultrasonics::Ultrasonics() {          // definicion de constructor
   //Serial.begin(9600);
+  pinMode(lm_R, INPUT);
+  pinMode(lm_L, INPUT);
   Serial.println("OK ULTRASONICS");
 }
 
@@ -89,7 +91,7 @@ void Ultrasonics::scan() {                    // metodo para escaneo de las medi
     */
     mesures[i] = sonar[i].ping_cm();
     //Serial.println( mesures[7]);
-   
+
     delay(7);
   }
 }
@@ -109,15 +111,15 @@ byte Ultrasonics::action() {
     //Serial.println("Left");
     return 1;
   }
-//
-//  else if (digitalRead(lm_L) == HIGH) {
-//    //Serial.println("Little left");
-//    return 2;
-//  }
-//  else if (digitalRead(lm_R) == HIGH) {
-//    //Serial.println("Little right");
-//    return 3;
-//  }
+
+  else if (digitalRead(lm_L) == HIGH) {
+    //Serial.println("Little left");
+    return 2;
+  }
+  else if (digitalRead(lm_R) == HIGH) {
+    //Serial.println("Little right");
+    return 3;
+  }
   else if (this->mesures[0] > df) {
     //Serial.println("Enfrente");
     return 4;
