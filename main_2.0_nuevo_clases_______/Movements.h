@@ -65,10 +65,10 @@ void Movements::forward() {       // metodo de movimiento hacia delante
   servoBR.attach(sm_BR);
 
 
-  servoFL.write(140);  // 180
-  servoBL.write(180);  // 180
-  servoFR.write(30);   // 0
-  servoBR.write(30);
+  servoFL.write(30);  // 180
+  servoBL.write(30);  // 180
+  servoFR.write(180);   // 0
+  servoBR.write(140);
 
   //  delay(step_size);
   //  servoFL.detach();
